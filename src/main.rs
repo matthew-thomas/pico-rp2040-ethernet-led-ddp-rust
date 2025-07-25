@@ -4,17 +4,25 @@
 #![no_std]
 #![no_main]
 
+// The `bsp` crate provides the Board Support Package for the RP2040.
 use bsp::entry;
+
+// A highly efficient logging framework that targets resource-constrained devices, like microcontrollers.
 use defmt::*;
+
+// The `defmt-rtt` crate provides a way to output logs over RTT (Real-Time Transfer) for debugging.
 use defmt_rtt as _;
+
+// The `embedded-hal` crate provides traits for embedded hardware abstraction, such as digital output pins.
 use embedded_hal::digital::OutputPin;
+
+// The `panic-probe` crate provides a panic handler that outputs panic messages over RTT.
 use panic_probe as _;
 
-// Provide an alias for our BSP so we can switch targets quickly.
-// Uncomment the BSP you included in Cargo.toml, the rest of the code does not need to change.
+// The `rp_pico` crate provides the board support package for the Raspberry Pi Pico, which includes peripherals and pins.
 use rp_pico as bsp;
-// use sparkfun_pro_micro_rp2040 as bsp;
 
+// The `bsp::hal` module provides the hardware abstraction layer for the RP2040, including clocks, peripherals, and watchdog.
 use bsp::hal::{
     clocks::{init_clocks_and_plls, Clock},
     pac,
